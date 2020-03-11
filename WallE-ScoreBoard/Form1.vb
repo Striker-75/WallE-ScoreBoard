@@ -33,7 +33,7 @@ Public Class Form1
         'Open and start a saved worksheet
         objApp = New Excel.Application()
         objBooks = objApp.Workbooks
-        objBook = objBooks.Open("C:\Users\natem\Documents\College Stuff\Senior Year\Systems III\WallE-ScoreBoard\ScoreBoardBeta.xlsx")
+        objBook = objBooks.Open("")
         objSheets = objBook.Worksheets
         objSheet = objSheets(1)
 

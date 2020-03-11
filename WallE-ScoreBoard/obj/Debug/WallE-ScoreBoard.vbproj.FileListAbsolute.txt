@@ -10,3 +10,8 @@ C:\Users\natem\Documents\College Stuff\Senior Year\Systems III\WallE-ScoreBoard\
 C:\Users\natem\Documents\College Stuff\Senior Year\Systems III\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.exe
 C:\Users\natem\Documents\College Stuff\Senior Year\Systems III\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.xml
 C:\Users\natem\Documents\College Stuff\Senior Year\Systems III\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.pdb
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\bin\Debug\WallE-ScoreBoard.exe.config
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.vbproj.ResolveComReference.cache
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.exe
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.xml
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.pdb
