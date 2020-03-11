@@ -29,6 +29,7 @@ Partial Class Form1
         Me.teamLabel = New System.Windows.Forms.Label()
         Me.tableTimer = New System.Windows.Forms.Timer(Me.components)
         Me.globalScoreTable = New System.Windows.Forms.TableLayoutPanel()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.SuspendLayout()
         '
         'scoreSheetButton
@@ -75,6 +76,10 @@ Partial Class Form1
         Me.globalScoreTable.Size = New System.Drawing.Size(390, 462)
         Me.globalScoreTable.TabIndex = 3
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -97,4 +102,5 @@ Partial Class Form1
     Friend WithEvents teamLabel As Label
     Friend WithEvents tableTimer As Timer
     Friend WithEvents globalScoreTable As TableLayoutPanel
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

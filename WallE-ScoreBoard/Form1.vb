@@ -23,8 +23,18 @@ Public Class Form1
         teamTimer.Start()
     End Sub
 
+    'Open the file
     Private Sub scoreSheetButton_Click(ByVal sender As System.Object,
    ByVal e As System.EventArgs) Handles scoreSheetButton.Click
+        OpenFileDialog1.Title = "Please Select the score sheet"
+
+        OpenFileDialog1.InitialDirectory = "C:"
+
+        OpenFileDialog1.ShowDialog()
+    End Sub
+
+    'When the file is selected
+    Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
         Dim objBooks As Excel.Workbooks
         Dim objSheets As Excel.Sheets
         Dim objSheet As Excel._Worksheet
@@ -33,7 +43,7 @@ Public Class Form1
         'Open and start a saved worksheet
         objApp = New Excel.Application()
         objBooks = objApp.Workbooks
-        objBook = objBooks.Open("")
+        objBook = objBooks.Open(OpenFileDialog1.FileName.ToString())
         objSheets = objBook.Worksheets
         objSheet = objSheets(1)
 
@@ -81,7 +91,6 @@ Public Class Form1
 
         Controls.Add(globalScoreTable)
     End Sub
-
     'Restricts textbox to numbers only
     Private Sub teamTextBox_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles teamTextBox.KeyPress
         If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) AndAlso Not e.KeyChar = "." Then
@@ -221,6 +230,7 @@ Public Class Form1
         Next
 
     End Sub
+
 End Class
 
 

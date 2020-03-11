@@ -15,3 +15,10 @@ C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\Wall
 C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.exe
 C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.xml
 C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.pdb
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\bin\Debug\WallE-ScoreBoard.exe
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\bin\Debug\WallE-ScoreBoard.pdb
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\bin\Debug\WallE-ScoreBoard.xml
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.vbprojResolveAssemblyReference.cache
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE_ScoreBoard.Form1.resources
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE_ScoreBoard.Resources.resources
+C:\Users\natem\Documents\College Stuff\GitHub Repositories\WallE-ScoreBoard\WallE-ScoreBoard\obj\Debug\WallE-ScoreBoard.vbproj.GenerateResource.Cache
