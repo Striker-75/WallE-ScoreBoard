@@ -19,6 +19,8 @@ Public Class Form1
 
     'What happens when the form starts
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Set screen size
+        Me.Size = Screen.PrimaryScreen.WorkingArea.Size
         'Start the Timer
         teamTimer.Start()
         'Hide the tables
