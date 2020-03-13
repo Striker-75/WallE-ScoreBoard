@@ -21,6 +21,12 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Start the Timer
         teamTimer.Start()
+        'Hide the tables
+        globalScoreTable.Visible = False
+        fieldOneTable.Visible = False
+        fieldTwoTable.Visible = False
+        fieldThreeTable.Visible = False
+        fieldFourTable.Visible = False
     End Sub
 
     'Open the file
@@ -37,28 +43,52 @@ Public Class Form1
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
         Dim objBooks As Excel.Workbooks
         Dim objSheets As Excel.Sheets
-        Dim objSheet As Excel._Worksheet
-        Dim range As Excel.Range
+        Dim objScoreSheet As Excel._Worksheet
+        Dim objFieldOneSheet As Excel._Worksheet
+        Dim objFieldTwoSheet As Excel._Worksheet
+        Dim objFieldThreeSheet As Excel._Worksheet
+        Dim objFieldFourSheet As Excel._Worksheet
+        Dim globalScoreRange As Excel.Range
+        Dim fieldOneRange As Excel.Range
+        Dim fieldTwoRange As Excel.Range
+        Dim fieldThreeRange As Excel.Range
+        Dim fieldFourRange As Excel.Range
 
         'Open and start a saved worksheet
         objApp = New Excel.Application()
         objBooks = objApp.Workbooks
         objBook = objBooks.Open(OpenFileDialog1.FileName.ToString())
         objSheets = objBook.Worksheets
-        objSheet = objSheets(1)
+        objScoreSheet = objSheets(1)
+        objFieldOneSheet = objSheets(1)
+        objFieldTwoSheet = objSheets(1)
+        objFieldThreeSheet = objSheets(1)
+        objFieldFourSheet = objSheets(1)
 
 
         'Get the range where the starting cell has the address
         'm_sStartingCell and its dimensions are m_iNumRows x m_iNumCols.
-        range = objSheet.Range("A1", Reflection.Missing.Value)
+        globalScoreRange = objScoreSheet.Range("A1", Reflection.Missing.Value)
+        fieldOneRange = objFieldOneSheet.Range("A1", Reflection.Missing.Value)
+        fieldTwoRange = objFieldTwoSheet.Range("A1", Reflection.Missing.Value)
+        fieldThreeRange = objFieldThreeSheet.Range("A1", Reflection.Missing.Value)
+        fieldFourRange = objFieldFourSheet.Range("A1", Reflection.Missing.Value)
 
         'Return control of Excel to the user.
         objApp.Visible = True
         objApp.UserControl = True
 
         'Clean up a little.
-        range = Nothing
-        objSheet = Nothing
+        globalScoreRange = Nothing
+        fieldOneRange = Nothing
+        fieldTwoRange = Nothing
+        fieldThreeRange = Nothing
+        fieldFourRange = Nothing
+        objScoreSheet = Nothing
+        objFieldOneSheet = Nothing
+        objFieldTwoSheet = Nothing
+        objFieldThreeSheet = Nothing
+        objFieldFourSheet = Nothing
         objSheets = Nothing
         objBooks = Nothing
 
@@ -80,16 +110,29 @@ Public Class Form1
 
         'Create a table to hold the team data
         globalScoreTable.BackColor = Color.LightBlue
-        globalScoreTable.ColumnCount = 3
-        globalScoreTable.RowCount = teamNumberint
-        globalScoreTable.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        globalScoreTable.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        globalScoreTable.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        For row As Integer = 0 To teamNumberint
+        globalScoreTable.RowCount = 0
+        globalScoreTable.RowStyles.Clear()
+        For row As Integer = 0 To teamNumberint - 1
             globalScoreTable.RowStyles.Add(New RowStyle(SizeType.Percent, (100 / teamNumberint)))
+            globalScoreTable.RowCount += 1
         Next
-
         Controls.Add(globalScoreTable)
+
+        'Set background colors of the other tables
+        fieldOneTable.BackColor = Color.LightBlue
+        fieldTwoTable.BackColor = Color.LightBlue
+        fieldThreeTable.BackColor = Color.LightBlue
+        fieldFourTable.BackColor = Color.LightBlue
+
+        'Show the tables
+        globalScoreTable.Visible = True
+        fieldOneTable.Visible = True
+        fieldTwoTable.Visible = True
+        fieldThreeTable.Visible = True
+        fieldFourTable.Visible = True
+
+        Me.BackColor = Color.Black
+
     End Sub
     'Restricts textbox to numbers only
     Private Sub teamTextBox_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles teamTextBox.KeyPress
@@ -114,22 +157,81 @@ Public Class Form1
     'Check and read in data from excel every 5 seconds
     Private Sub tableTimer_Tick(sender As Object, e As EventArgs) Handles tableTimer.Tick
         Dim objSheets As Excel.Sheets
-        Dim objSheet As Excel._Worksheet
-        Dim range As Excel.Range
+        Dim objScoreSheet As Excel._Worksheet
+        Dim objFieldOneSheet As Excel._Worksheet
+        Dim objFieldTwoSheet As Excel._Worksheet
+        Dim objFieldThreeSheet As Excel._Worksheet
+        Dim objFieldFourSheet As Excel._Worksheet
+        Dim globalScoreRange As Excel.Range
+        Dim fieldOneRange As Excel.Range
+        Dim fieldTwoRange As Excel.Range
+        Dim fieldThreeRange As Excel.Range
+        Dim fieldFourRange As Excel.Range
 
         'Get a reference to the first sheet of the workbook.
         objSheets = objBook.Worksheets
-        objSheet = objSheets(1)
+        objScoreSheet = objSheets(1)
+        objFieldOneSheet = objSheets(1)
+        objFieldTwoSheet = objSheets(1)
+        objFieldThreeSheet = objSheets(1)
+        objFieldFourSheet = objSheets(1)
 
         'Use the number of teams to set the range
         Dim endpoint As String = "H" + teamNumberStr
 
         'Get a range of data.
-        range = objSheet.Range("A2", endpoint)
+        globalScoreRange = objScoreSheet.Range("A2", endpoint)
+        fieldOneRange = objFieldOneSheet.Range("J2", "J4")
+        fieldTwoRange = objFieldTwoSheet.Range("L2", "L4")
+        fieldThreeRange = objFieldThreeSheet.Range("N2", "N4")
+        fieldFourRange = objFieldFourSheet.Range("P2", "P4")
 
         'Retrieve the data from the range.
         Dim teamResults(,) As Object
-        teamResults = range.Value
+        Dim fieldOne(,) As Object
+        Dim fieldTwo(,) As Object
+        Dim fieldThree(,) As Object
+        Dim fieldFour(,) As Object
+        teamResults = globalScoreRange.Value
+        fieldOne = fieldOneRange.Value
+        fieldTwo = fieldTwoRange.Value
+        fieldThree = fieldThreeRange.Value
+        fieldFour = fieldFourRange.Value
+
+        'Create arrays for the fields
+        Dim fieldOneTeams(3) As String
+        Dim fieldTwoTeams(3) As String
+        Dim fieldThreeTeams(3) As String
+        Dim fieldFourTeams(3) As String
+        Dim teamCounter As Integer
+
+        'Fill up the the arrays of teams
+        For teamCounter = 1 To 3
+            'Set field one
+            If fieldOne(teamCounter, 1) IsNot Nothing Then
+                fieldOneTeams(teamCounter - 1) = fieldOne(teamCounter, 1)
+            Else
+                fieldOneTeams(teamCounter - 1) = " "
+            End If
+            'Set field two
+            If fieldTwo(teamCounter, 1) IsNot Nothing Then
+                fieldTwoTeams(teamCounter - 1) = fieldTwo(teamCounter, 1)
+            Else
+                fieldTwoTeams(teamCounter - 1) = " "
+            End If
+            'Set field three
+            If fieldThree(teamCounter, 1) IsNot Nothing Then
+                fieldThreeTeams(teamCounter - 1) = fieldThree(teamCounter, 1)
+            Else
+                fieldThreeTeams(teamCounter - 1) = " "
+            End If
+            'Set field four
+            If fieldFour(teamCounter, 1) IsNot Nothing Then
+                fieldFourTeams(teamCounter - 1) = fieldFour(teamCounter, 1)
+            Else
+                fieldFourTeams(teamCounter - 1) = " "
+            End If
+        Next
 
         'Determine the dimensions of the array.
         Dim iRows As Long
@@ -138,7 +240,6 @@ Public Class Form1
 
         'Save the data into the struts
         Dim teams(teamNumberint) As teamData
-        Dim teamCounter As Long
         rowCounter = iRows
         teamCounter = 0
 
@@ -176,17 +277,29 @@ Public Class Form1
             Next j
         Next i
 
-        'Populate The table
-        populateTable(teams, globalScoreTable)
+        'Populate The tables
+        updateScores(teams, globalScoreTable)
+        updateFields(fieldOneTeams, fieldOneTable)
+        updateFields(fieldTwoTeams, fieldTwoTable)
+        updateFields(fieldThreeTeams, fieldThreeTable)
+        updateFields(fieldFourTeams, fieldFourTable)
 
         'Clean up a little.
-        range = Nothing
-        objSheet = Nothing
+        globalScoreRange = Nothing
+        fieldOneRange = Nothing
+        fieldTwoRange = Nothing
+        fieldThreeRange = Nothing
+        fieldFourRange = Nothing
+        objScoreSheet = Nothing
+        objFieldOneSheet = Nothing
+        objFieldTwoSheet = Nothing
+        objFieldThreeSheet = Nothing
+        objFieldFourSheet = Nothing
         objSheets = Nothing
     End Sub
 
     'Generating the table
-    Private Sub populateTable(teams() As teamData, table As TableLayoutPanel)
+    Private Sub updateScores(teams() As teamData, table As TableLayoutPanel)
 
         'Get number of rows and cols of the table
         Dim rows As Integer
@@ -194,43 +307,86 @@ Public Class Form1
 
         'Put data in the rows
         Dim row As Integer
-        For row = 0 To rows - 1
+        For row = 1 To rows
             'Set placings
             Dim placing As Control = table.GetControlFromPosition(0, row)
             Dim placingLabel As Label = placing
             If placingLabel IsNot Nothing Then
-                placing.Text = row + 1
+                placing.Text = row
             Else
                 placingLabel = New Label()
+                placingLabel.TextAlign = ContentAlignment.MiddleCenter
+                placingLabel.Dock = DockStyle.Fill
                 table.Controls.Add(placingLabel, 0, row)
-                placingLabel.Text = row + 1
+                placingLabel.Text = row
             End If
 
             'Set team names
             Dim teamName As Control = table.GetControlFromPosition(1, row)
             Dim teamLabel As Label = teamName
             If teamLabel IsNot Nothing Then
-                teamLabel.Text = teams(row).teamName
+                teamLabel.Text = teams(row - 1).teamName
             Else
                 teamLabel = New Label()
+                teamLabel.TextAlign = ContentAlignment.MiddleCenter
+                teamLabel.Dock = DockStyle.Fill
                 table.Controls.Add(teamLabel, 1, row)
-                teamLabel.Text = teams(row).teamName
+                teamLabel.Text = teams(row - 1).teamName
             End If
 
             'Set score
             Dim score As Control = table.GetControlFromPosition(2, row)
             Dim scoreLabel As Label = score
             If scoreLabel IsNot Nothing Then
-                scoreLabel.Text = teams(row).overallScore
+                scoreLabel.Text = teams(row - 1).overallScore
             Else
                 scoreLabel = New Label()
+                scoreLabel.TextAlign = ContentAlignment.MiddleCenter
+                scoreLabel.Dock = DockStyle.Fill
                 table.Controls.Add(scoreLabel, 2, row)
-                scoreLabel.Text = teams(row).overallScore
+                scoreLabel.Text = teams(row - 1).overallScore
             End If
         Next
 
     End Sub
 
+    'Process to fill in the up next tables
+    Private Sub updateFields(teams() As String, table As TableLayoutPanel)
+
+        'Get number of rows and cols of the table
+        Dim rows As Integer
+        rows = table.RowCount
+
+        'Put data in the rows
+        Dim row As Integer
+        For row = 1 To rows - 1
+            'Set placings
+            Dim placing As Control = table.GetControlFromPosition(0, row)
+            Dim placingLabel As Label = placing
+            If placingLabel IsNot Nothing Then
+                placing.Text = row
+            Else
+                placingLabel = New Label()
+                placingLabel.TextAlign = ContentAlignment.MiddleCenter
+                placingLabel.Dock = DockStyle.Fill
+                table.Controls.Add(placingLabel, 0, row)
+                placingLabel.Text = row
+            End If
+
+            'Set team names
+            Dim teamName As Control = table.GetControlFromPosition(1, row)
+            Dim teamLabel As Label = teamName
+            If teamLabel IsNot Nothing Then
+                teamLabel.Text = teams(row - 1)
+            Else
+                teamLabel = New Label()
+                teamLabel.TextAlign = ContentAlignment.MiddleCenter
+                teamLabel.Dock = DockStyle.Fill
+                table.Controls.Add(teamLabel, 1, row)
+                teamLabel.Text = teams(row - 1)
+            End If
+        Next
+    End Sub
 End Class
 
 
